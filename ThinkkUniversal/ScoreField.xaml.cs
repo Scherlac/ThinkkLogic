@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Runtime.InteropServices.WindowsRuntime;
 using ThinkkCommon;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
-namespace ThinkkLogic
+// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+
+namespace ThinkUniversal
 {
-    /// <summary>
-    /// Interaction logic for ScoreField.xaml
-    /// </summary>
-    public partial class ScoreField : UserControl
+    public sealed partial class ScoreField : UserControl
     {
-
         private States State;
 
         public ScoreField()
@@ -52,19 +51,21 @@ namespace ThinkkLogic
 
             var hidden = color.HasFlag(States.Hidden);
 
-            this.Hole.Visibility = hidden ? Visibility.Hidden : Visibility.Visible;
+            this.Hole.Opacity = hidden ? 0.0 : 1.0;
 
             var c = color & States.ColorMask;
 
-            this.Button.Visibility = c == States.Empty || hidden ? Visibility.Hidden : Visibility.Visible;
+            this.Button.Opacity = c == States.Empty || hidden ? 0.0 : 1.0;
 
             if (c != States.Empty)
             {
                 var colorName = c.ToString();
-                this.ButtonGradientStop.Color = (Color)ColorConverter.ConvertFromString(colorName);
+                if (MainPage.ColorNames.ContainsKey(colorName))
+                {
+                    this.ButtonGradientStop.Color = MainPage.ColorNames[colorName];
+                }
             }
 
         }
-
     }
 }

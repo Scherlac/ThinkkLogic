@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ThinkkCommon;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
-namespace ThinkkLogic
+// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+
+namespace ThinkUniversal
 {
-    /// <summary>
-    /// Interaction logic for Combination.xaml
-    /// </summary>
-    public partial class Combination : UserControl
+    public sealed partial class Combination : UserControl
     {
         private List<ColorField> Places;
         private List<ScoreField> Scores;
         private Color BaseColor;
+        private ICommand DoubleTappedCommand;
 
         public Combination()
         {
             InitializeComponent();
-            BaseColor = (Color)ColorConverter.ConvertFromString("#00E0DECF");
+            // FIXME
+            //BaseColor = (Color)ColorConverter.ConvertFromString("#00E0DECF");
 
             Scores = new List<ScoreField>() { S1, S2, S3, S4 };
             Places = new List<ColorField>() { C1, C2, C3, C4 };
@@ -71,7 +74,7 @@ namespace ThinkkLogic
 
         public void Hide()
         {
-            ScoreView.Visibility = Visibility.Hidden;
+            ScoreView.Opacity = 0.0;
             foreach (var pl in Places)
             {
                 pl.Hide();
@@ -94,8 +97,13 @@ namespace ThinkkLogic
 
         public void Activate(ICommand eval)
         {
-            this.Evaluate.Command = eval;
-            BaseColor.ScA = 0.3F;
+            DoubleTappedCommand = eval;
+            // FIXME
+            //this.Evaluate.Command = eval;
+            this.ScoreField.DoubleTapped += ScoreField_DoubleTapped;
+            this.ScoreField.IsDoubleTapEnabled = true;
+
+            BaseColor.A = 0x50; // 0.3F;
             this.Back.Background = new SolidColorBrush(BaseColor);
             foreach (var pl in Places)
             {
@@ -113,11 +121,26 @@ namespace ThinkkLogic
 
         }
 
+        private void ScoreField_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            var ce = DoubleTappedCommand?.CanExecute(sender);
+            if (ce.GetValueOrDefault(false))
+            {
+                DoubleTappedCommand.Execute(sender);
+            }
+        }
+
+
         public void Disable()
         {
-            this.Evaluate.Command = null;
+            // FIXME
+            //this.Evaluate.Command = null;
+            DoubleTappedCommand = null;
+            this.ScoreField.DoubleTapped -= ScoreField_DoubleTapped;
+            this.ScoreField.IsDoubleTapEnabled = false;
 
-            BaseColor.ScA = 0.0F;
+            BaseColor.A = 0;
+
             this.Back.Background = new SolidColorBrush(BaseColor);
             foreach (var pl in Places)
             {

@@ -1,0 +1,62 @@
+﻿<UserControl
+    x:Class="ThinkUniversal.Combination"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ThinkUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="320">
+    <Grid  x:Name="Back" Background="#00E0DECF">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="ScoreField"
+                   Margin="7" 
+                   RadiusX="2" RadiusY="2" 
+                   StrokeThickness="2" Fill="{StaticResource ComFieldBackground}"
+                   Grid.Column="0">
+            <!--Rectangle.InputBindings>
+                <MouseBinding x:Name="Evaluate" 
+                              MouseAction="LeftDoubleClick" 
+                              Command="{Binding}"
+                              CommandParameter="{RelativeSource AncestorType=local:Combination}"  
+                              />
+            </-->
+        </Rectangle>
+
+
+        <Grid x:Name="ScoreView" Margin="5" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <local:ScoreField x:Name="S1" Margin="2" Grid.Column="0" Grid.Row="0"/>
+            <local:ScoreField x:Name="S2" Margin="2" Grid.Column="1" Grid.Row="0"/>
+            <local:ScoreField x:Name="S3" Margin="2" Grid.Column="0" Grid.Row="1"/>
+            <local:ScoreField x:Name="S4" Margin="2" Grid.Column="1" Grid.Row="1"/>
+
+        </Grid>
+        <Grid Margin="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <local:ColorField x:Name="C1" Margin="2" Grid.Column="0"/>
+            <local:ColorField x:Name="C2" Margin="2" Grid.Column="1"/>
+            <local:ColorField x:Name="C3" Margin="2" Grid.Column="2"/>
+            <local:ColorField x:Name="C4" Margin="2" Grid.Column="3"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="ThinkUniversal.ColorField"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ThinkUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="40" 
+    d:DesignWidth="40">
+<Grid x:Name="Field" Opacity="0.8">
+    <!--Grid.InputBindings>
+        <MouseBinding x:Name="FlipCommand" 
+                              MouseAction="LeftClick" 
+                              Command="{Binding}"
+                              CommandParameter="{RelativeSource AncestorType=local:ColorField}"  
+                              />
+    </-->
+    <Rectangle 
+            RadiusX="2" RadiusY="2" 
+            StrokeThickness="2" Fill="{StaticResource ComFieldBackground}" 
+                   >
+    </Rectangle>
+        <Ellipse x:Name="Hole" Height="10" Width="10" Fill="Black" Opacity="0"/>
+        <!-- Visibility="Hidden" -->
+    <TextBlock x:Name="Text" Text="?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Foreground="Yellow">
+        <TextBlock.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform ScaleX="2"/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </TextBlock.RenderTransform>
+    </TextBlock>
+        <Ellipse x:Name="Button" Height="35" Width="35" Opacity="0" >
+            <Ellipse.Fill>
+                <!-- RadialGradientBrush -->
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop x:Name="ButtonGradientStop" Color="#FFDE0B0B" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+            <!-- Visibility="Hidden" -->
+    </Ellipse>
+
+</Grid>
+</UserControl>

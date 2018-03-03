@@ -1,19 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using ThinkkCommon;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -52,7 +41,7 @@ namespace ThinkUniversal
 
         private void NewGame()
         {
-            var height = 60;
+            var height = 55;
             var attemptsCount = 10;
 
             Puzzle = Combination.CreatePuzzle(1);
@@ -113,7 +102,8 @@ namespace ThinkUniversal
         private void YouWon()
         {
             Puzzle.Show();
-
+            this.PuzzleView.DoubleTapped += AttemptsView_DoubleTapped;
+    
             // FIXME
             //GameOverWindow = new GameOver(new RelayCommand(
             //    (o) => { return true; },
@@ -132,6 +122,12 @@ namespace ThinkUniversal
             //GameOverWindow.Play();
 
 
+        }
+
+        private void AttemptsView_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            NewGame();
+            this.PuzzleView.DoubleTapped -= AttemptsView_DoubleTapped;
         }
 
         private void GameOver()

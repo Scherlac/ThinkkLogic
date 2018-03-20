@@ -2,7 +2,7 @@
 
 **Description**
 
-Thinkk Logic is an easy to learn mater mind puzzle game. 
+Thinkk Logic is an easy to learn mastermind puzzle game. 
 
 **Compatibility**
 
@@ -11,7 +11,7 @@ The current version runs on Windows Desktop and Phone.
 
 **Development**
 
-This program was written under Visual Studio 2017 Community Edition in C#. 
+This program was written under Visual Studio 2015 Community Edition in C#. 
 
 The program of this game was prepared to support multiple level of the puzzle. Currently the game starts with level 1. 
 

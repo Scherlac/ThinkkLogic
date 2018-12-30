@@ -1,0 +1,45 @@
+﻿<rect width="40"
+      height="40"
+      x="0"
+      y="0"
+      style="opacity:0.3;stroke-width:0"
+      rx="3"
+      ry="3" />
+
+<g style="opacity:@Target.TextOpacity">
+    <text xml:space="preserve"
+          style="font-style:normal;font-weight:bold;font-size:26px;line-height:1.25;font-family:sans-serif;text-align:center;fill:silver"
+          x="12"
+          y="30"
+          id="text179"><tspan>?</tspan></text>
+</g>
+
+<g style="opacity:@Target.HoleOpacity">
+    <circle cx="20" cy="20" r="6"
+            stroke="black" stroke-width="3"
+            fill="black" />
+</g>
+
+
+<g class="animated-normal" style="opacity:@Target.ButtonOpacity">
+    <circle class="animated-normal" cx="20" cy="20" r="14"
+            stroke="silver" stroke-width="3"
+            fill="@Target.ButtonGradientStopColor" />
+    <circle cx="20" cy="20" r="15.5"
+            style="fill:url(#radialGradient4952);fill-opacity:1" />
+</g>
+
+<rect width="50"
+      height="50"
+      x="0"
+      y="0"
+      style="opacity:0.0;stroke-width:0"
+      onclick="@Target.Field_Tapped" />
+
+@functions {
+
+[Parameter]
+private ColorField Target { set; get; }
+
+
+}

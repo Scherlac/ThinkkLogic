@@ -1,0 +1,17 @@
+﻿<g style="opacity:@Target.HoleOpacity">
+    <circle cx="10" cy="10" r="3"
+            stroke="black" stroke-width="2"
+            fill="black" />
+</g>
+<g class="animated-normal" style="opacity:@Target.ButtonOpacity">
+    <circle class="animated-normal" cx="10" cy="10" r="8"
+            stroke="silver" stroke-width="2"
+            fill="@Target.ButtonGradientStopColor" />
+    <circle cx="10" cy="10" r="6"
+            style="fill:url(#radialGradient4952);fill-opacity:1" />
+</g>
+@functions{
+
+    [Parameter]
+    private ScoreField Target { set; get; }
+}

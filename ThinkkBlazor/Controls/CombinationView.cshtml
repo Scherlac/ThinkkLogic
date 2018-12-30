@@ -1,0 +1,38 @@
+﻿@{
+    var x = 0.0;
+    var y = 0.0;
+    var i = 0;
+
+    <g transform="translate(0.0,0.0)" ondblclick="@Target.ScoreField_DoubleTapped">
+        @foreach (var a in Target.Scores)
+        {
+            x = 20.5 * (i % 2);
+            y = 20.5 * (i / 2);
+            <g transform="translate(@x,@y)">
+                <ScoreFieldView Target="@a" />
+            </g>
+            i = i + 1;
+        }
+    </g>
+
+    i = 0;
+    <g transform="translate(60.0,0.0)">
+        @foreach (var a in Target.Places)
+        {
+            x = 50.0 * (i % 4);
+            y = 50.0 * (i / 4);
+            <g transform="translate(@x,@y)">
+                <ColorFieldView Target="@a" />
+            </g>
+            i = i + 1;
+        }
+    </g>
+}
+
+@functions {
+
+[Parameter]
+private Combination Target { set; get; }
+
+
+}

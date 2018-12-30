@@ -8,6 +8,16 @@ using System.Windows.Input;
 namespace ThinkkCommon
 {
 
+    public enum Colors
+    {
+        Red = 0x01,
+        Yellow = 0x02,
+        White = 0x03,
+        Blue = 0x04,
+        Green = 0x05,
+        Black = 0x06,
+    }
+
     [Flags]
     public enum States : uint
     {

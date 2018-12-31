@@ -21,24 +21,17 @@ namespace ThinkkCommon
 
         public Combination()
         {
-            // FIXME
-            //BaseColor = (Color)ColorConverter.ConvertFromString("#00E0DECF");
-            var S1 = new ScoreField();
-            var S2 = new ScoreField();
-            var S3 = new ScoreField();
-            var S4 = new ScoreField();
+            Scores = new List<ScoreField>(4);
+            Places = new List<ColorField>(4);
 
-            Scores = new List<ScoreField>() { S1, S2, S3, S4 };
-
-            var C1 = new ColorField();
-            var C2 = new ColorField();
-            var C3 = new ColorField();
-            var C4 = new ColorField();
-
-            Places = new List<ColorField>() { C1, C2, C3, C4 };
+            // add instances
+            for (var i = 0; i < 4; i++)
+            {
+                Scores.Add(new ScoreField());
+                Places.Add(new ColorField());
+            }
 
         }
-
 
         public static Combination CreatePuzzle(int level)
         {
@@ -49,12 +42,14 @@ namespace ThinkkCommon
             var rnd = new Random();
             var used = new List<States>(6);
 
-            used.Add(States.Empty);
-            used.Add(States.Black);
 
             switch (level)
             {
-                default:
+                case 1:
+
+                    used.Add(States.Empty);
+                    used.Add(States.Black);
+
                     foreach (var pl in c.Places)
                     {
                         var x = default(States);
@@ -63,6 +58,22 @@ namespace ThinkkCommon
                         {
                             x = (States)rnd.Next(0, 6);
                         } while (used.Contains(x));
+
+                        used.Add(x);
+                        pl.Update(x | States.Hidden);
+                    }
+
+                    break;
+                case 2:
+
+                    foreach (var pl in c.Places)
+                    {
+                        var x = default(States);
+
+                        do
+                        {
+                            x = (States)rnd.Next(0, 6);
+                        } while (used.FindAll(s => s == x).Count >= 2);
 
                         used.Add(x);
                         pl.Update(x | States.Hidden);
@@ -155,7 +166,8 @@ namespace ThinkkCommon
 
                 if (pl2.Evaluate(pl1))
                 {
-                    li.Add(States.White | States.RigthPlace | States.RightColor);
+                    //li.Add(States.White | States.RigthPlace | States.RightColor);
+                    li.Add(States.Green | States.RigthPlace | States.RightColor);
                     puzzleUsed.Add(i);
                 }
             }
@@ -185,7 +197,8 @@ namespace ThinkkCommon
 
                     if (pl2.Evaluate(pl1))
                     {
-                        li.Add(States.Black | States.RightColor);
+                        //li.Add(States.Black | States.RightColor);
+                        li.Add(States.Grey | States.RightColor);
                         thisUsed.Add(j);
                         break;
                     }

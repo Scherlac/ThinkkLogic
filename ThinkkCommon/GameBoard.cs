@@ -42,17 +42,20 @@ namespace ThinkkCommon
         public List<Combination> Attempts;
         public int CurrentAttempt;
 
+        public event EventHandler OnWon;
+        public event EventHandler OnNewGame;
+
         public void Refresh()
         {
         }
 
-        public async void NewGame()
+        public async void NewGame(int level)
         {
             var aa = Attempts;
             Puzzle?.Hide();
             Attempts = null;
             
-            var p = Combination.CreatePuzzle(1);
+            var p = Combination.CreatePuzzle(level);
             p.Height = height;
             p.Hide();
 
@@ -64,8 +67,11 @@ namespace ThinkkCommon
             Attempts = aa;
             Puzzle = p;
 
+            OnWon?.BeginInvoke(this, null, null, null);
+
             CurrentAttempt = 0;
             SetAttempt(0);
+
         }
 
         private void SetAttempt(int attempt)
@@ -112,6 +118,7 @@ namespace ThinkkCommon
 
         private void YouWon()
         {
+            OnWon?.BeginInvoke(this, null, null, null);
             Puzzle.Show();
         }
 

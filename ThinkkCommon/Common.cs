@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ThinkkCommon
 {
@@ -16,6 +18,7 @@ namespace ThinkkCommon
         Blue = 0x04,
         Green = 0x05,
         Black = 0x06,
+        Grey = 0x08,
     }
 
     [Flags]
@@ -30,6 +33,8 @@ namespace ThinkkCommon
         Black = 0x06,
 
         ColorMod = 0x07,
+
+        Grey = 0x08,
 
         ColorMask = 0x0F,
 
@@ -75,6 +80,76 @@ namespace ThinkkCommon
     {
 
     }
+
+    /// <summary>
+    /// This is the base implementation os the INotifyPropertyChanged. It is also used in the NetBSI Library in order to have a common and easy to use implementation.  
+    /// </summary>
+    public abstract class NotifyPropertyChangedBase : INotifyPropertyChanged
+    {
+        private event PropertyChangedEventHandler propertychanged;
+
+        /// <summary>
+        /// Occurs when a property value changes
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// This method raise the event.
+        /// </summary>
+        /// <param name="propertyName">The name of the property has changed</param>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = propertychanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// This generic method is used to update the field behind the property.  
+        /// </summary>
+        /// <typeparam name="T">The type of the property. This is evaluated automatically</typeparam>
+        /// <param name="field">This is the reference to the variable.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="propertyName">The name of the property. This is evaluated automatically</param>
+        /// <returns>This method return true on the case the field was updated.</returns>
+        protected bool SetField<T>(ref T field, T value,
+            [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        /// <summary>
+        /// This generic method is used to update the field behind the property.  
+        /// </summary>
+        /// <typeparam name="T">The type of the property. This is evaluated automatically</typeparam>
+        /// <param name="field">This is the reference to the variable.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="Hi">The high limit.</param>
+        /// <param name="Lo">The low limit.</param>
+        /// <param name="propertyName">The name of the property. This is evaluated automatically</param>
+        /// <returns>This method return true on the case the field was updated.</returns>
+        protected bool SetFieldHiLo<T>(ref T field, T value, T Hi, T Lo,
+            [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            if (Comparer<T>.Default.Compare(value, Hi) > 0)
+            {
+                throw new ArgumentException(string.Format("The value has to be lower or equal to  {0}", Hi));
+            }
+            if (Comparer<T>.Default.Compare(value, Lo) < 0)
+            {
+                throw new ArgumentException(string.Format("The value has to be greater or equal to {0}", Lo));
+            }
+
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+    }
+
 
     public static class LocalExtensions
     {

@@ -1,87 +1,99 @@
 ﻿@page "/gameboard"
 
-<div>
+@{
+    try
+    {
 
-    @if (Game == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else if (Game.Attempts.Count > 3)
-    {
         <div>
-            <svg xmlns:svg="http://www.w3.org/2000/svg"
-                 xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                 width="300"
-                 height="600"
-                 viewBox="0 0 210 297">
-                <defs id="defs430">
-                    <radialGradient id="radialGradient4952"
-                                    cx="0.0"
-                                    cy="0.0"
-                                    fx="0.0"
-                                    fy="0.0"
-                                    r="20.0"
-                                    gradientUnits="userSpaceOnUse"
-                                    gradientTransform="matrix(0.8,0.8,-0.6,0.6,10,10)">
-                        <stop style="stop-color:#ffffff;stop-opacity:1;"
-                              offset="0" />
-                        <stop style="stop-color:#ffffff;stop-opacity:0;"
-                              offset="1" />
-                    </radialGradient>
-                </defs>
-                <g>
-                    <image transform="rotate(-90)" preserveAspectRatio="none meet" x="-600" y="0" width="600" height="600" xlink:href="images/Background.jpg" />
-                    @{
-                        var y = 0.0;
-                        var i = 0;
+            @if (Game == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else if ((Game?.Attempts?.Count ?? 0) > 3)
+            {
+                <div>
+                    <svg xmlns:svg="http://www.w3.org/2000/svg"
+                         xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                         width="300"
+                         height="600"
+                         viewBox="0 0 210 297">
+                        <defs id="defs430">
+                            <radialGradient id="radialGradient4952"
+                                            cx="0.0"
+                                            cy="0.0"
+                                            fx="0.0"
+                                            fy="0.0"
+                                            r="20.0"
+                                            gradientUnits="userSpaceOnUse"
+                                            gradientTransform="matrix(0.8,0.8,-0.6,0.6,10,10)">
+                                <stop style="stop-color:#ffffff;stop-opacity:1;"
+                                      offset="0" />
+                                <stop style="stop-color:#ffffff;stop-opacity:0;"
+                                      offset="1" />
+                            </radialGradient>
+                        </defs>
+                        <g>
+                            <image transform="rotate(-90)" preserveAspectRatio="none meet" x="-600" y="0" width="600" height="600" xlink:href="images/Background.jpg" />
+                            @{
+                                var y = 0.0;
+                                var i = 0;
 
-                        <g transform="translate(30.0,30.0)">
-                            <CombinationView Target="@Game.Puzzle" />
-                        </g>
-
-
-                        i = 0;
-                        y = 50.0 * Game.CurrentAttempt;
-                        <g transform="translate(0.0,80.0)">
-                            <rect width="300"
-                                  height="50"
-                                  x="0"
-                                  y="0"
-                                  fill="silver"
-                                  class="animated-slow"
-                                  style="opacity:0.3;stroke-width:0"
-                                  transform="translate(0.0,@y)"
-                                  onclick="@Game.Evalueate"
-                                  />
-
-                            @foreach (var a in Game.Attempts)
-                            {
-                                y = 50.0 * i + 5.0;
-
-                                <g transform="translate(30,@y)">
-                                    <CombinationView Target="@a" />
+                                <g transform="translate(30.0,30.0)">
+                                    <CombinationView Target="@Game.Puzzle" />
                                 </g>
-                                i = i + 1;
+
+
+                                i = 0;
+                                y = 50.0 * Game.CurrentAttempt;
+                                <g transform="translate(0.0,80.0)">
+                                    <rect width="300"
+                                          height="50"
+                                          x="0"
+                                          y="0"
+                                          fill="silver"
+                                          class="animated-slow"
+                                          style="opacity:0.3;stroke-width:0"
+                                          transform="translate(0.0,@y)"
+                                          ondblclick="@Game.Evalueate" />
+
+                                    @foreach (var a in Game.Attempts)
+                                    {
+                                        y = 50.0 * i + 5.0;
+
+                                        <g transform="translate(30,@y)">
+                                            <CombinationView Target="@a" />
+                                        </g>
+                                        i = i + 1;
+                                    }
+                                </g>
                             }
                         </g>
-                    }
-                </g>
-            </svg>
-        </div>
+                    </svg>
+                </div>
+                <select class="btn btn-primary" bind="@level">
+                    <option>Level 1</option>
+                    <option>Level 2</option>
+                </select>
+                <button class="btn btn-primary" onclick="@NewGame">NewGame</button>
+                <button class="btn btn-primary" onclick="@Game.Refresh">Refresh</button>
+            }
 
+        </div>
+    }
+    catch (Exception e)
+    {
+        <h1>@e.Message</h1>
+        <pre>
+            @e.StackTrace
+        </pre>
     }
 
-</div>
-
-<button class="btn btn-primary" onclick="@Game.NewGame">NewGame</button>
-<button class="btn btn-primary" onclick="@Game.Refresh">Refresh</button>
-
-
-
+}
 @functions{
 
     public string currentState = "Create";
+    private static int level = 1;
 
     //@Puzzle
     //@foreach(var a in Attempts)
@@ -89,22 +101,32 @@
     //    @a
     //    }
 
-    private static GameBoard Game;
+    private static GameBoard Game = null;
 
     protected override async Task OnInitAsync()
     {
+        InitGame();
+    }
+
+    private void InitGame()
+    {
         if (Game == null)
         {
-            Game = new GameBoard();
-            //Game.NewGame();
+            try
+            {
+                Game = new GameBoard();
+                Game.NewGame(level);
+            }
+            catch (Exception e)
+            {
+                currentState = e.Message + " --> " + e.StackTrace;
+            }
         }
-
     }
 
-    protected override bool ShouldRender()
+    private void NewGame()
     {
-        var renderUI = true;
-
-        return renderUI;
+        Game.NewGame(level);
     }
+
 }

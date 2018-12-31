@@ -85,15 +85,15 @@ app {
 }
 
 .animated-normal {
-    -moz-transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -moz-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
 }
 
 .animated-slow {
-    -moz-transition: all 2.5s ease;
-    -webkit-transition: all 2.5s ease;
-    transition: all 2.5s ease;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 @media (max-width: 767.98px) {

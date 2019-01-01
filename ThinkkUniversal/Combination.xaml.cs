@@ -47,12 +47,14 @@ namespace ThinkUniversal
             var rnd = new Random();
             var used = new List<States>(6);
 
-            used.Add(States.Empty);
-            used.Add(States.Black);
 
             switch (level)
             {
-                default:
+                case 1:
+
+                    used.Add(States.Empty);
+                    used.Add(States.Black);
+
                     foreach (var pl in c.Places)
                     {
                         var x = default(States);
@@ -61,6 +63,22 @@ namespace ThinkUniversal
                         {
                             x = (States)rnd.Next(0, 6);
                         } while (used.Contains(x));
+
+                        used.Add(x);
+                        pl.Update(x | States.Hidden);
+                    }
+
+                    break;
+                case 2:
+
+                    foreach (var pl in c.Places)
+                    {
+                        var x = default(States);
+
+                        do
+                        {
+                            x = (States)rnd.Next(0, 6);
+                        } while ( used.FindAll(s => s == x).Count >= 2 );
 
                         used.Add(x);
                         pl.Update(x | States.Hidden);
@@ -164,7 +182,7 @@ namespace ThinkUniversal
 
                 if (pl2.Evaluate(pl1))
                 {
-                    li.Add(States.White | States.RigthPlace | States.RightColor);
+                    li.Add(States.Green | States.RigthPlace | States.RightColor);
                     puzzleUsed.Add(i);
                 }
             }
@@ -194,7 +212,7 @@ namespace ThinkUniversal
 
                     if (pl2.Evaluate(pl1))
                     {
-                        li.Add(States.Black | States.RightColor);
+                        li.Add(States.Grey | States.RightColor);
                         thisUsed.Add(j);
                         break;
                     }

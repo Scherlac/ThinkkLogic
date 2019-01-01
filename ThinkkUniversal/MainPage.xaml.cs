@@ -44,7 +44,7 @@ namespace ThinkUniversal
             var height = 55;
             var attemptsCount = 10;
 
-            Puzzle = Combination.CreatePuzzle(1);
+            Puzzle = Combination.CreatePuzzle(2);
             Puzzle.Height = height;
             Puzzle.Hide();
             PuzzleView.Children.Clear();

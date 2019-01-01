@@ -12,6 +12,7 @@ namespace ThinkkCommon
         public static Dictionary<string, Colors> ColorNames;
         protected const int attemptsCount = 10;
         protected const int height = 55;
+        public string Hint = ""; 
 
         static GameBoard()
         {
@@ -132,6 +133,7 @@ namespace ThinkkCommon
         {
             var won = Attempts[CurrentAttempt].Evalueate(Puzzle);
             var next_attempt = CurrentAttempt + 1;
+
 
             if (won)
             {

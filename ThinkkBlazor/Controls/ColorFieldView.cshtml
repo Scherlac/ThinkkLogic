@@ -34,12 +34,16 @@
       x="0"
       y="0"
       style="opacity:0.0;stroke-width:0"
-      onclick="@Target.Field_Tapped" />
+      onclick="@Flip" />
 
 @functions {
 
-[Parameter]
-private ColorField Target { set; get; }
+    [Parameter]
+    private ColorField Target { set; get; }
 
+    private void Flip()
+    {
+        Target.Field_Tapped();
+    }
 
 }

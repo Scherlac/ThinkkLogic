@@ -108,7 +108,7 @@ namespace ThinkkLogic
             var fn = fi.FullName;
             this.Media.Source = new Uri(fn);
             this.Text.Text = "Game Over! Try again!";
-            this.Text.Foreground = new SolidColorBrush(Colors.Red);
+            this.Text.Foreground = new SolidColorBrush(System.Windows.Media.Colors.Red);
         }
 
         internal void Won()
@@ -127,7 +127,7 @@ namespace ThinkkLogic
             this.Media.Source = new Uri(fn);
 
             this.Text.Text = "Game Over: You won!";
-            this.Text.Foreground = new SolidColorBrush(Colors.Yellow);
+            this.Text.Foreground = new SolidColorBrush(System.Windows.Media.Colors.Yellow);
         }
     }
 }

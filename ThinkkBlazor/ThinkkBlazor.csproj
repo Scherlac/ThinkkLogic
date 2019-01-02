@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ThinkkCommon\ThinkkCommon.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="Controls\ColorFieldView.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -29,5 +25,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <Import Project="..\ThinkkCommon\ThinkkCommon.projitems" Label="Shared" />
 
 </Project>

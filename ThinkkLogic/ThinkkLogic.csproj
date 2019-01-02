@@ -206,12 +206,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ThinkkCommon\ThinkkCommon.csproj">
-      <Project>{8521affe-776a-41e3-b4d2-fe71d8c15d7d}</Project>
-      <Name>ThinkkCommon</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <Import Project="..\ThinkkCommon\ThinkkCommon.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

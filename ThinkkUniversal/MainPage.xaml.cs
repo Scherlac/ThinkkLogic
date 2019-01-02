@@ -81,8 +81,8 @@ namespace ThinkUniversal
                 (o) =>
                 {
                     var c = attempt;
-                    var won = Attempts[c].Evalueate(Puzzle);
-                    Evalueate(o);
+                    var won = Attempts[c].Evaluate(Puzzle);
+                    Evaluate(o);
                     Attempts[c].Disable();
 
                     if (won)
@@ -153,7 +153,7 @@ namespace ThinkUniversal
 
         }
 
-        private void Evalueate(object o)
+        private void Evaluate(object o)
         {
             //throw new NotImplementedException();
         }

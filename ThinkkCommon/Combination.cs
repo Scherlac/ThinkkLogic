@@ -42,44 +42,49 @@ namespace ThinkkCommon
             var rnd = new Random();
             var used = new List<States>(6);
 
+            // allowed colors
+            var allowed = new List<States>(6) {
+                States.Empty,
+                States.Red, States.Yellow, States.White,
+                States.Blue, States.Green, States.Black};
+
+            // allowed repeatrion
+            var repeat = 2;
 
             switch (level)
             {
                 case 1:
 
-                    used.Add(States.Empty);
-                    used.Add(States.Black);
+                    // on level one only five color and no repeatition allowed: 
+                    // we remove black and empty
+                    allowed.Remove(States.Empty);
+                    allowed.Remove(States.Black);
 
-                    foreach (var pl in c.Places)
-                    {
-                        var x = default(States);
-
-                        do
-                        {
-                            x = (States)rnd.Next(0, 6);
-                        } while (used.Contains(x));
-
-                        used.Add(x);
-                        pl.Update(x | States.Hidden);
-                    }
+                    repeat = 1;
 
                     break;
                 case 2:
 
-                    foreach (var pl in c.Places)
-                    {
-                        var x = default(States);
-
-                        do
-                        {
-                            x = (States)rnd.Next(0, 6);
-                        } while (used.FindAll(s => s == x).Count >= 2);
-
-                        used.Add(x);
-                        pl.Update(x | States.Hidden);
-                    }
+                    // on level two seven color and repeatition of two allowed: 
 
                     break;
+            }
+
+            foreach (var pl in c.Places)
+            {
+                var x = default(States);
+
+                do
+                {
+                    x = (States)rnd.Next(0, 6);
+
+                } while (
+                    !allowed.Contains(x) ||
+                    (used.FindAll(s => s == x).Count >= 1)
+                    );
+
+                used.Add(x);
+                pl.Update(x | States.Hidden);
             }
 
             return c;
@@ -152,7 +157,7 @@ namespace ThinkkCommon
             }
         }
 
-        public bool Evalueate(Combination puzzle)
+        public bool Evaluate(Combination puzzle)
         {
             var li = new List<States>();
             var puzzleUsed = new List<int>(4);

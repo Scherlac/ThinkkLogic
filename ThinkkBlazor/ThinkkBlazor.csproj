@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Controls\Tutor.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Controls\ColorFieldView.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

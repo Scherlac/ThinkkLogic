@@ -167,7 +167,7 @@ namespace ThinkUniversal
         }
 
 
-        public bool Evalueate(Combination puzzle)
+        public bool Evaluate(Combination puzzle)
         {
             var li = new List<States>();
             var puzzleUsed = new List<int>(4);

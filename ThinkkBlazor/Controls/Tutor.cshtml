@@ -1,0 +1,46 @@
+﻿@{
+    var x = 0.0;
+    var y = 0.0;
+    var show = 0.0;
+    var show2 = 0.0;
+    
+    y = 50.0 * Index + 110;
+    var cell_width = Pages.GameBoardPage.cell_width;
+
+    switch (Hint)
+    {
+        case "put0":
+            x = 120.0 + cell_width * 0;
+            show = 1.0;
+            break;
+        case "put1":
+            x = 120.0 + cell_width * 1;
+            show = 1.0;
+            break;
+        case "put2":
+            x = 120.0 + cell_width * 2;
+            show = 1.0;
+            break;
+        case "put3":
+            x = 120.0 + cell_width * 3;
+            show = 1.0;
+            break;
+        case "eval":
+            x = 30.0;
+            show2 = 1.0;
+            break;
+        default:
+            x = 30.0;
+            break;
+    }
+
+    <Click x="@x" y="@y" show="@show" />
+    <DoubleClick x="@x" y="@y" show="@show2" />
+
+}
+
+@functions {
+
+    [Parameter] private double Index { get; set; }
+    [Parameter] private string Hint { get; set; }
+}

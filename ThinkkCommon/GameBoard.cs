@@ -7,12 +7,25 @@ using System.Threading.Tasks;
 
 namespace ThinkkCommon
 {
-    public class GameBoard
+    public class GameBoard : NotifyPropertyChangedBase
     {
         public static Dictionary<string, Colors> ColorNames;
         protected const int attemptsCount = 10;
         protected const int height = 55;
-        public string Hint = ""; 
+
+        public int _Level;
+        public int Level
+        {
+            set { SetField(ref _Level, value); }
+            get { return _Level; }
+        }
+
+        public string _Hint;
+        public string Hint
+        {
+            set { SetField(ref _Hint, value); }
+            get { return _Hint; }
+        }
 
         static GameBoard()
         {
@@ -25,6 +38,7 @@ namespace ThinkkCommon
 
         public GameBoard()
         {
+            Level = 1;
             Attempts = new List<Combination>(attemptsCount);
 
             for (var i = 0; i < attemptsCount; i++)
@@ -35,13 +49,27 @@ namespace ThinkkCommon
                 Attempts.Add(a);
             }
 
-            Puzzle = Combination.CreatePuzzle(1);
+            Puzzle = Combination.CreatePuzzle(Level);
 
         }
 
         public Combination Puzzle;
         public List<Combination> Attempts;
-        public int CurrentAttempt;
+        public int CurrentAttemptIndex;
+        public Combination CurrentAttempt
+        {
+            get
+            {
+                try
+                {
+                    return Attempts?[CurrentAttemptIndex];
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
 
         public event EventHandler OnWon;
         public event EventHandler OnNewGame;
@@ -50,9 +78,10 @@ namespace ThinkkCommon
         {
         }
 
-        public async void NewGame(int level)
+        public async void NewGame()
         {
             var aa = Attempts;
+            var level = Level;
             Puzzle?.Hide();
             Attempts = null;
             
@@ -70,14 +99,14 @@ namespace ThinkkCommon
 
             OnWon?.BeginInvoke(this, null, null, null);
 
-            CurrentAttempt = 0;
+            CurrentAttemptIndex = 0;
             SetAttempt(0);
 
         }
 
         private void SetAttempt(int attempt)
         {
-            Attempts[CurrentAttempt].Disable();
+            Attempts[CurrentAttemptIndex].Disable();
 
             if (attempt < 0)
             {
@@ -88,7 +117,7 @@ namespace ThinkkCommon
                 return;
             }
 
-            CurrentAttempt = attempt;
+            CurrentAttemptIndex = attempt;
             Attempts[attempt].Activate(null);
 
             //new RelayCommand(
@@ -99,8 +128,8 @@ namespace ThinkkCommon
                 //(o) =>
                 //{
                 //    var c = attempt;
-                //    var won = Attempts[c].Evalueate(Puzzle);
-                //    Evalueate(o);
+                //    var won = Attempts[c].Evaluate(Puzzle);
+                //    Evaluate(o);
                 //    Attempts[c].Disable();
 
                 //    if (won)
@@ -129,10 +158,10 @@ namespace ThinkkCommon
 
         }
 
-        public void Evalueate()
+        public void Evaluate()
         {
-            var won = Attempts[CurrentAttempt].Evalueate(Puzzle);
-            var next_attempt = CurrentAttempt + 1;
+            var won = Attempts[CurrentAttemptIndex].Evaluate(Puzzle);
+            var next_attempt = CurrentAttemptIndex + 1;
 
 
             if (won)

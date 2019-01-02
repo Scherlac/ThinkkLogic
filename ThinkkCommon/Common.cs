@@ -86,8 +86,6 @@ namespace ThinkkCommon
     /// </summary>
     public abstract class NotifyPropertyChangedBase : INotifyPropertyChanged
     {
-        private event PropertyChangedEventHandler propertychanged;
-
         /// <summary>
         /// Occurs when a property value changes
         /// </summary>
@@ -99,7 +97,7 @@ namespace ThinkkCommon
         /// <param name="propertyName">The name of the property has changed</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = propertychanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 

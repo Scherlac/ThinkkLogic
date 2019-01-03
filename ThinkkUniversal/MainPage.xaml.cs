@@ -19,7 +19,7 @@ namespace ThinkUniversal
         static MainPage()
         {
             ColorNames = new Dictionary<string, Color>();
-            foreach (var color in typeof(Colors).GetRuntimeProperties())
+            foreach (var color in typeof(Windows.UI.Colors).GetRuntimeProperties())
             {
                 ColorNames.Add(color.Name, (Color)color.GetValue(null));
             }

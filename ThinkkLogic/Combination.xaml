@@ -17,7 +17,7 @@
                    StrokeThickness="2" Fill="{DynamicResource ComFieldBackground}"
                    Grid.Column="0">
             <Rectangle.InputBindings>
-                <MouseBinding x:Name="Evaluate" 
+                <MouseBinding x:Name="EvaluateBinding" 
                               MouseAction="LeftDoubleClick" 
                               Command="{Binding}"
                               CommandParameter="{RelativeSource AncestorType=local:Combination}"  

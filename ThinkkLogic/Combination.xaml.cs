@@ -94,7 +94,7 @@ namespace ThinkkLogic
 
         public void Activate(ICommand eval)
         {
-            this.Evaluate.Command = eval;
+            this.EvaluateBinding.Command = eval;
             BaseColor.ScA = 0.3F;
             this.Back.Background = new SolidColorBrush(BaseColor);
             foreach (var pl in Places)
@@ -115,7 +115,7 @@ namespace ThinkkLogic
 
         public void Disable()
         {
-            this.Evaluate.Command = null;
+            this.EvaluateBinding.Command = null;
 
             BaseColor.ScA = 0.0F;
             this.Back.Background = new SolidColorBrush(BaseColor);

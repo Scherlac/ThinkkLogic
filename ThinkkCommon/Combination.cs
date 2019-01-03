@@ -80,7 +80,7 @@ namespace ThinkkCommon
 
                 } while (
                     !allowed.Contains(x) ||
-                    (used.FindAll(s => s == x).Count >= 1)
+                    (used.FindAll(s => s == x).Count >= repeat)
                     );
 
                 used.Add(x);

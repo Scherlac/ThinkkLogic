@@ -15,17 +15,17 @@
                    >
     </Rectangle>
         <Ellipse x:Name="Hole" Height="10" Width="10" Fill="Black" Opacity="0"/>
-    <TextBlock x:Name="Text" Text="?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Foreground="Yellow">
+    <TextBlock x:Name="Text" Text="?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Foreground="Silver">
         <TextBlock.RenderTransform>
             <TransformGroup>
-                <ScaleTransform ScaleX="2"/>
+                <ScaleTransform ScaleX="1.4"/>
                 <SkewTransform/>
                 <RotateTransform/>
                 <TranslateTransform/>
             </TransformGroup>
         </TextBlock.RenderTransform>
     </TextBlock>
-        <Ellipse x:Name="Button" Height="35" Width="35" Opacity="0" >
+        <Ellipse x:Name="Button" Height="35" Width="35" Opacity="0" Stroke="Silver" StrokeThickness="3" >
             <Ellipse.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop x:Name="ButtonGradientStop" Color="#FFDE0B0B" Offset="1"/>

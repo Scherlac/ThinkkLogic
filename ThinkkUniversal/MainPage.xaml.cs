@@ -29,13 +29,33 @@ namespace ThinkUniversal
         private Combination Puzzle;
         private List<Combination> Attempts;
 
+        public int LevelIndex {
+            set;
+            get;
+        }
+
+        public List<string> LevelItems
+        {
+            set;
+            get;
+        }
+
         private int CurrentAttempt;
         // FIXME
         //private GameOver GameOverWindow;
 
         public MainPage()
         {
+            LevelIndex = 1;
+            LevelItems = new List<string>() { "Level 1", "Level 2" };
+
             InitializeComponent();
+            cbLevel.ItemsSource = LevelItems;
+            btNewGame.IsDoubleTapEnabled = false;
+            btNewGame.Command = new RelayCommand(
+                (o)=> { return true; },
+                (o) => { NewGame(); }
+                );
             NewGame();
         }
 
@@ -44,7 +64,7 @@ namespace ThinkUniversal
             var height = 55;
             var attemptsCount = 10;
 
-            Puzzle = Combination.CreatePuzzle(2);
+            Puzzle = Combination.CreatePuzzle(LevelIndex +1);
             Puzzle.Height = height;
             Puzzle.Hide();
             PuzzleView.Children.Clear();
@@ -133,6 +153,7 @@ namespace ThinkUniversal
         private void GameOver()
         {
             Puzzle.Show();
+            this.PuzzleView.DoubleTapped += AttemptsView_DoubleTapped;
 
             // FIXME
             //GameOverWindow = new GameOver(new RelayCommand(

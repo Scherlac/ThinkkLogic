@@ -45,6 +45,12 @@
             <local:ScoreField x:Name="S4" Margin="2" Grid.Column="1" Grid.Row="1"/>
 
         </Grid>
+        <Rectangle x:Name="ScoreFieldCommand"
+                   Margin="5" 
+                   StrokeThickness="0"
+                   Grid.Column="0" Fill="#00000000">
+        </Rectangle>
+
         <Grid Margin="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*"/>

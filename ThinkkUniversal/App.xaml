@@ -7,6 +7,46 @@
     
     >
     <Application.Resources>
+        
+        <SolidColorBrush x:Key="YellowBrush" Color="Yellow" />
+        <SolidColorBrush x:Key="GreenBrush" Color="Green" />
+        <SolidColorBrush x:Key="SilverBrush" Color="Silver" />
+        <SolidColorBrush x:Key="BlakBrush" Color="Black" />
+
+        <StaticResource x:Key="ComboBoxBackground" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBackgroundPointerOver" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBackgroundPressed" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBackgroundDisabled" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBackgroundUnfocused" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBackgroundBorderBrushFocused" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBackgroundBorderBrushUnfocused" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxForeground" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxForegroundDisabled" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxForegroundFocused" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxForegroundFocusedPressed" ResourceKey="SilverBrush" />
+        
+        <StaticResource x:Key="ComboBoxPlaceHolderForeground" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxPlaceHolderForegroundFocusedPressed" ResourceKey="SilverBrush" />
+        
+        <StaticResource x:Key="ComboBoxBorderBrush" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBorderBrushPointerOver" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBorderBrushPressed" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxBorderBrushDisabled" ResourceKey="BlakBrush" />
+
+        <StaticResource x:Key="ComboBoxDropDownBackgroundPointerOver" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxDropDownBackgroundPointerPressed" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxFocusedDropDownBackgroundPointerOver" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxFocusedDropDownBackgroundPointerPressed" ResourceKey="BlakBrush" />
+
+        <StaticResource x:Key="ComboBoxDropDownGlyphForeground" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxEditableDropDownGlyphForeground" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxDropDownGlyphForegroundDisabled" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxDropDownGlyphForegroundFocused" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxDropDownGlyphForegroundFocusedPressed" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxDropDownBackground" ResourceKey="BlakBrush" />
+        <StaticResource x:Key="ComboBoxDropDownForeground" ResourceKey="SilverBrush" />
+        <StaticResource x:Key="ComboBoxDropDownBorderBrush" ResourceKey="SilverBrush" />
+
         <LinearGradientBrush x:Key="ComFieldBackground" EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#601D050F" Offset="0"/>
             <GradientStop Color="#601F0C0B" Offset="1"/>

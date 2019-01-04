@@ -118,8 +118,8 @@ namespace ThinkUniversal
             DoubleTappedCommand = eval;
             // FIXME
             //this.Evaluate.Command = eval;
-            this.ScoreField.DoubleTapped += ScoreField_DoubleTapped;
-            this.ScoreField.IsDoubleTapEnabled = true;
+            this.ScoreFieldCommand.DoubleTapped += ScoreField_DoubleTapped;
+            this.ScoreFieldCommand.IsDoubleTapEnabled = true;
 
             BaseColor.A = 0x50; // 0.3F;
             this.Back.Background = new SolidColorBrush(BaseColor);
@@ -154,8 +154,8 @@ namespace ThinkUniversal
             // FIXME
             //this.Evaluate.Command = null;
             DoubleTappedCommand = null;
-            this.ScoreField.DoubleTapped -= ScoreField_DoubleTapped;
-            this.ScoreField.IsDoubleTapEnabled = false;
+            this.ScoreFieldCommand.DoubleTapped -= ScoreField_DoubleTapped;
+            this.ScoreFieldCommand.IsDoubleTapEnabled = false;
 
             BaseColor.A = 0;
 

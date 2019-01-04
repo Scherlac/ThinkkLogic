@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="df0e285e-34f7-4bcd-b3cb-bbe7fdbc999e" Publisher="CN=scher" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="df0e285e-34f7-4bcd-b3cb-bbe7fdbc999e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="24633ScherlacEnhancedGmbH.ThinkkUniversal" Publisher="CN=D7C2C638-5496-4584-A99D-703FCF500A8A" Version="1.0.8.0" />
+  <mp:PhoneIdentity PhoneProductId="c9643687-9186-404c-bedb-80c97045d736" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>ThinkUniversal</DisplayName>
-    <PublisherDisplayName>scher</PublisherDisplayName>
+    <DisplayName>ThinkkUniversal</DisplayName>
+    <PublisherDisplayName>Scherlac Enhanced GmbH</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ThinkUniversal.App">
-      <uap:VisualElements DisplayName="ThinkUniversal" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="ThinkUniversal" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="ThinkkUniversal" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="ThinkUniversal" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Thinkk" Square310x310Logo="Assets\Square310x310Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="wide310x150Logo" />
@@ -26,7 +26,4 @@
       </uap:VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>

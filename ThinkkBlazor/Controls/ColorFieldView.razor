@@ -34,12 +34,12 @@
       x="0"
       y="0"
       style="opacity:0.0;stroke-width:0"
-      onclick="@Flip" />
+      @onclick="Flip" />
 
-@functions {
+@code {
 
     [Parameter]
-    private ColorField Target { set; get; }
+    public ColorField Target { set; get; }
 
     private void Flip()
     {

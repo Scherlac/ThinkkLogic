@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ThinkkBlazor
@@ -15,9 +14,9 @@ namespace ThinkkBlazor
         {
         }
 
-        public void Configure(IBlazorApplicationBuilder app)
-        {
-            app.AddComponent<App>("app");
-        }
+        //public void Configure(IBlazorApplicationBuilder app)
+        //{
+        //    app.AddComponent<App>("app");
+        //}
     }
 }

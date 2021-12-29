@@ -20,7 +20,7 @@
                          xmlns:xlink="http://www.w3.org/1999/xlink"
                          width="300"
                          height="600"
-                         viewBox="0 0 210 297">
+                         viewBox="0 0 300 600">
                         <defs id="defs430">
                             <radialGradient id="radialGradient4952"
                                             cx="0.0"
@@ -79,18 +79,18 @@
                                           y="0"
                                           style="opacity:0.0;stroke-width:0"
                                           transform="translate(0.0,@y)"
-                                          ondblclick="@Evaluate" />
+                                          @ondblclick="Evaluate" />
                                 </g>
                             }
                         </g>
                         <Tutor Index="@Game.CurrentAttemptIndex" Hint="@Game.Hint" />
                     </svg>
                 </div>
-                <select class="btn btn-primary" bind="@Game.Level">
+                <select class="btn btn-primary" @bind="@Level">
                     <option value="1">Level 1</option>
                     <option value="2">Level 2</option>
                 </select>
-                <button class="btn btn-primary" onclick="@NewGame">NewGame</button>
+                <button class="btn btn-primary" @onclick="NewGame">NewGame</button>
             }
 
         </div>
@@ -104,7 +104,7 @@
     }
 
 }
-@functions{
+@code{
 
     public const double cell_width = 50.0;
     public const double cell_height = 50.0;
@@ -120,6 +120,21 @@
     //    }
 
     private static GameBoard Game = null;
+
+    public int Level
+    {
+        set
+        {
+            if (!ReferenceEquals(null, Game))
+            {
+                Game.Level = value;
+            }
+        }
+        get
+        {
+            return Game?.Level ?? 1;
+        }
+    }
 
     public static void UpdateHint(string hint)
     {
@@ -159,10 +174,11 @@
         }
     }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         InitGame();
         Game.Hint = "put0";
+        await base.OnInitializedAsync();
     }
 
     private void InitGame()

@@ -22,5 +22,5 @@ The program of this game was prepared to support multiple level of the puzzle. C
 
 | Project name | Build status |
 | --- | --- |
-| ThinkkBlazor | [![Build Status: ThinkkBlazor](https://dev.azure.com/scherlac/ThinkkBlazor/_apis/build/status/ThinkkBlazor%20-%20CI?branchName=master)](https://dev.azure.com/scherlac/ThinkkBlazor/_build/latest?definitionId=1?branchName=master) |
+| ThinkkBlazor | [![Build Status: ThinkkBlazor](https://dev.azure.com/scherlac/ThinkkBlazor/_apis/build/status/ThinkkBlazor%20-%20CI?branchName=master)](https://dev.azure.com/scherlac/ThinkkBlazor/_build/latest?definitionId=1) |
 
